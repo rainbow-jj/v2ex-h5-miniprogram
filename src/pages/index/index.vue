@@ -1,22 +1,25 @@
 <template>
   <view class="index">
     <HeaderBar />
-    <!-- <NumberDisplay/>
-    <NumberSubmit/> -->
+    <Content />
+    <NumberDisplay/>
+    <NumberSubmit/>
   </view>
 </template>
 
 <script>
-// import NumberDisplay from '../../components/NumberDisplay.vue'
-// import NumberSubmit from '../../components/NumberSubmit.vue'
-import HeaderBar from '../../components/HeaderBar/HeaderBar'
+import NumberDisplay from '../../components/NumberDisplay.vue'
+import NumberSubmit from '../../components/NumberSubmit.vue'
+import HeaderBar from '../../components/HeaderBar/HeaderBar.vue'
+import Content from '../../components/NavBar/index.vue'
 
 export default {
   name: 'Index',
   components: {
-    // NumberDisplay,
-    // NumberSubmit,
+    NumberDisplay,
+    NumberSubmit,
     HeaderBar,
+    Content
   }
 }
 </script>

@@ -26,9 +26,9 @@
   </view>
 </template>
 
-<script>
-  import Taro from '@tarojs/taro'
-  import { View } from '@tarojs/components'
+<script lang="typescript">
+  // import Taro from '@tarojs/taro'
+  // import { View } from '@tarojs/components'
 
   export default {
     data () {
@@ -42,9 +42,7 @@
         search: require("./assets/search_icon_light.png").default
       }
     },
-    // components: {
-    //   View
-    // },
+
     methods: {
       sreachClose: function (){
       //  this.isShow = false
