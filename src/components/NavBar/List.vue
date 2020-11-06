@@ -1,7 +1,7 @@
 <template>
   <view class="cell" >
     <view v-model="activeIndex" @click="handleClick">
-      <a href="" :class="[isClick ? 'tab_current':'tab']"  >技术</a>
+      <a href="" :class="[isClick ? 'tab_current':'tab']" >技术</a>
       <a href=""  :class="[isClick ? 'tab_current':'tab']">创意</a>
       <a href=""  :class="[isClick ? 'tab_current':'tab']" >好玩</a>
       <a href=""  :class="[isClick ? 'tab_current':'tab']" >Apple</a>
@@ -18,6 +18,8 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { AtTag } from 'taro-ui';
+
 export default Vue.extend({
   data () {
     return {
