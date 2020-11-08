@@ -3,7 +3,8 @@
    <view class="content">
     <slot></slot>
     <view class="box">
-      <NavBar  />
+      <nav-bar  />
+
     </view>
 
    </view>
@@ -13,6 +14,8 @@
 <script lang="ts">
 import Vue from 'vue';
 import NavBar from './List.vue';
+
+
 
 export default Vue.extend({
   data () {
