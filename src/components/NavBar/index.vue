@@ -6,7 +6,6 @@
       <nav-bar  />
 
     </view>
-
    </view>
   </view>
 </template>
@@ -15,13 +14,9 @@
 import Vue from 'vue';
 import NavBar from './List.vue';
 
-
-
 export default Vue.extend({
   data () {
-    return {
-
-    }
+    return {}
   },
   components: {
     NavBar,

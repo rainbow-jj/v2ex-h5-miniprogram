@@ -1,6 +1,6 @@
 <template>
   <view class="box-item">
-    <view cellpadding="0" cellspacing="0" border="0" width="100%">
+    <view >
       <tbody class="tby-box">
         <row  style="margin-left: 0px; margin-right: 0px; max-width: 300px">
           <col class="msg-header" style="padding-left: 0px; padding-right: 0px;"><a href=""><img :src="value.member.avatar_normal" alt="头图" class="avater" ></a></col>
