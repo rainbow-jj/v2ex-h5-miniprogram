@@ -1,36 +1,36 @@
 <template>
   <view class="cell" >
-    <view v-model="activeIndex" @click="handleClick">
-      <a href="" :class="[isClick ? 'tab_current':'tab']"  >技术</a>
-      <a href=""  :class="[isClick ? 'tab_current':'tab']">创意</a>
-      <a href=""  :class="[isClick ? 'tab_current':'tab']" >好玩</a>
-      <a href=""  :class="[isClick ? 'tab_current':'tab']" >Apple</a>
-      <a href=""  :class="[isClick ? 'tab_current':'tab']" >酷工作</a>
-      <a href=""  :class="[isClick ? 'tab_current':'tab']" >交易</a>
-      <a href=""  :class="[isClick ? 'tab_current':'tab']" >城市</a>
-      <a href=""  :class="[isClick ? 'tab_current':'tab']" >问与答</a>
-      <a href=""  :class="[isClick ? 'tab_current':'tab']" >最热</a>
-      <a  href=""  :class="[isClick ? 'tab_current':'tab']" >全部</a>
-      <a href=""  :class="[isClick ? 'tab_current':'tab']" >R2</a>
+    <view v-model="activeIndex" >
+      <tag
+        v-for="(item,index) in Navtitle"
+        :key="item"
+        :item="item"
+        :active="index === activeIndex"
+        @click="handleClick(index)"
+      />
     </view>
   </view>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
+import Tag from './Tag.vue'
 export default Vue.extend({
   data () {
     return {
-      // 默认的选择是 第10个 全部
-      activeIndex:"10",
-      isClick: false
+      Navtitle: ['技术','创意','好玩','Apple','酷工作','交易','城市','问与答','最热','全部','R2'],
+      activeIndex:9, // 默认点击的是下标为 9
     }
   },
-
+  components: {
+    Tag,
+  },
   methods: {
-    handleClick(e) {
-      console.log(e)
-      return this.isClick = true
+    handleClick(index) {
+      // 接收 Tag.vue传递过来的点击 ，将点击的index 通过上面 @click="handleClick(index) 将index 传递过来。
+      // :active="index === activeIndex" 将active 设置为要变得状态，所以就让已经显示点击的状态：activeIndex 等于传递过来的 index
+      // active 对应的就是 子组件传递过来的 index 需要改变的样式下标了。
+      this.activeIndex = index
     }
   }
 })
@@ -43,39 +43,5 @@ export default Vue.extend({
   text-align: left;
   border-bottom: 2px solid #e2e2e2;
 }
-a:-webkit-any-link {
-    color: -webkit-link;
-    cursor: pointer;
-    text-decoration: underline;
-}
-a.tab:link, a.tab:visited, a.tab:active {
-    display: inline-block;
-    font-size: 26px;
-    line-height: 32px;
-    padding: 10px 12px;
-    margin-right: 10px;
-    border-radius: 6px;
-    color: #555;
-}
-a:active, a:link, a:visited {
-    color: #778087;
-    text-decoration: none;
-    word-break: break-word;
-}
-a.tab_current:active, a.tab_current:link, a.tab_current:visited {
-    display: inline-block;
-    font-size: 28px;
-    line-height: 28px;
-    padding: 10px 16px;
-    margin-right: 10px;
-    border-radius: 6px;
-    background-color: #334;
-    color: #fff;
-}
-// .tab {
-//   background-color: yellow;
-// }
-// .tab_current {
-//   color: red;
-// }
+
 </style>

@@ -1,24 +1,25 @@
 <template>
   <view class="container">
-    <a href="https://www.v2ex.com" class="logoLink"><img id="logo" :src="logo" /></a>
+    <view href="https://www.v2ex.com" class="logoLink"><image id="logo" :src="logo" /></view>
     <view v-outside-click="sreachClose" class="searchBox" :class="{isClick}" @tap="searchhandler" >
-      <img  :src="search" class="searchIcon"/>
+      <image  :src="search" class="searchIcon"/>
       <input v-model="inputValue" class="searchInput"/>
     </view>
     <view v-cloak>
       <view v-outside-click="close">
         <view @tap="isShow=!isShow">
-          <img :src="iShow" class="showIcon" />
+          <image :src="iShow" class="showIcon" />
         </view>
         <view class="dropDown" v-show="isShow" >
           <view class="cellBox">
-            <a class="item" href="/">首页</a>
-            <a class="item" href="/signup">注册</a>
-            <a class="item" href="/loginup">登录</a>
+            <view class="item" href="/">首页</view>
+            <view class="item" href="/signup">注册</view>
+            <view class="item" href="/loginup">登录</view>
           </view>
           <view class="cell">
-            <a href="settings/night/toggle?once=40365" class="top">
-              <img :src="taggle" class="taggleIcon"/></a>
+            <view href="settings/night/toggle?once=40365" class="top">
+              <image :src="taggle" class="taggleIcon"/>
+            </view>
           </view>
         </view>
       </view>
@@ -26,9 +27,9 @@
   </view>
 </template>
 
-<script>
-  import Taro from '@tarojs/taro'
-  import { View } from '@tarojs/components'
+<script lang="typescript">
+  // import Taro from '@tarojs/taro'
+  // import { View } from '@tarojs/components'
 
   export default {
     data () {
@@ -42,12 +43,9 @@
         search: require("./assets/search_icon_light.png").default
       }
     },
-    // components: {
-    //   View
-    // },
+
     methods: {
       sreachClose: function (){
-      //  this.isShow = false
        this.isClick = false
      },
      close: function (){
@@ -89,6 +87,7 @@
 
 .dropDown {
   position: absolute;
+  background-color: #fff;
   right: 1px;
   top: 84px;
   z-index: 1000;
@@ -119,6 +118,10 @@
   text-decoration: none;
 
 }
+.taggleIcon {
+  width: 90px;
+  height: 36px;
+}
 .cell {
   display: flex;
   justify-content: start;
@@ -140,6 +143,7 @@
   background-color: #f9f9f9;
   width: 256px;
   height: 52px;
+  text-align: left;
 
 }
 .searchIcon {
@@ -148,16 +152,20 @@
   margin-top: 9px;
 
 }
-// .weui-input {
-//   width: 256px;
-//   height: 52px;
-//   padding-left: 10px;
-// }
+.searchInput {
+  align-items: left;
+}
 .weui-input  {
   background-color: #f9f9f9;
   width: 200px;
-  height: 100%;
+  height: 32px;
   display: block;
+  width: 4.26667rem;
+  height: 100%;
+  margin-left: 10px;
+  text-align: start;
+  display: block;
+
 }
 .isClick {
   width: 400px;
@@ -172,7 +180,6 @@
 input {
   outline: none;
   border: none;
-
 
 }
 </style>

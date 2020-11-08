@@ -1,6 +1,7 @@
 <template>
   <view class="index">
     <HeaderBar />
+    <NavBar />
     <!-- <NumberDisplay/>
     <NumberSubmit/> -->
   </view>
@@ -10,6 +11,7 @@
 // import NumberDisplay from '../../components/NumberDisplay.vue'
 // import NumberSubmit from '../../components/NumberSubmit.vue'
 import HeaderBar from '../../components/HeaderBar/HeaderBar'
+import NavBar from '../../components/NavBar/index.vue'
 
 export default {
   name: 'Index',
@@ -17,6 +19,7 @@ export default {
     // NumberDisplay,
     // NumberSubmit,
     HeaderBar,
+    NavBar
   }
 }
 </script>

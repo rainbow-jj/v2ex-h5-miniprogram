@@ -3,7 +3,8 @@
    <view class="content">
     <slot></slot>
     <view class="box">
-      <NavBar  />
+      <Tag />
+
     </view>
 
    </view>
@@ -12,16 +13,18 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import NavBar from './List.vue';
+import Tag from './List.vue';
+// import Articles from './Articles.vue';
+
 
 export default Vue.extend({
   data () {
     return {
-
     }
   },
   components: {
-    NavBar,
+    Tag,
+    // Articles,
   }
 })
 </script>
