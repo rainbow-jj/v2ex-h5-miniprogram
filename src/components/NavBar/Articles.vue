@@ -1,113 +1,141 @@
 <template>
-  <view class="box-item">
-    <view cellpadding="0" cellspacing="0" border="0" width="100%">
-      <tbody class="tby-box">
-        <row  style="margin-left: 0px; margin-right: 0px; max-width: 300px">
-          <col class="msg-header" style="padding-left: 0px; padding-right: 0px;"><a href=""><img :src="value.member.avatar_normal" alt="头图" class="avater" ></a></col>
-          <col  class="msg-mid">
-            <row>
-              <col class="titile">
-                <strong><a href="" class="title-a">{{ value.title }}</a></strong>
-              </col>
-              <col class="foot-msg">
-                <span><a class="s-lab">{{  value.node.title }}</a>&nbsp;•&nbsp;
-                  <strong><a href="">{{ value.member.username }}</a></strong>
-                    &nbsp;•&nbsp; 1 分钟前 &nbsp;•&nbsp; 最后回复来自
-                  <strong><a href="" class="last-reply">{{ value.last_reply_by }}</a></strong>
-                </span>
-              </col>
-            </row>
-          </col>
-          <col :span="1" class="msg-foot"><view class="art-num"><a href="">{{ value.replies }}</a></view></col>
-        </row>
-      </tbody>
-    </table>
+  <view class="article-item">
+    <view class="item-box">
+      <view class="article-content">
+        <view  class="article-row">
+          <view class="col-one">
+            <view href=""><image :src="value.member.avatar_normal" alt="头图" class="avater" /></view>
+          </view>
+          <view class="col-gap"></view>
+          <view  class="col-two">
+            <view class="content-row">
+              <view class="content-row-one">
+                <view href="" class="title-tag">{{ value.node.title }}</view>
+                 &nbsp;•&nbsp;
+                <view class="username small">{{ value.member.username }}</view>
+              </view>
+              <view class="row-gap"></view>
+              <view class="content-row-two">
+                <text class="article-title">{{ value.title }}</text>
+              </view>
+              <view class="row-gap"></view>
+              <view class="content-row-three small fade">
+                  1 分钟前 &nbsp;•&nbsp; 最后回复来自
+                  <view href="" class="last-reply">{{ value.last_reply_by }}</view>
+              </view>
+            </view>
+          </view>
+          <view class="col-three">
+            <view href="" class="count">{{ value.replies }}</view>
+          </view>
+        </view>
+      </view>
+    </view>
   </view>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 export default Vue.extend({
-
+  props: {
+    value: {
+      type: Object
+    }
+  }
 })
 </script>
 
 <style lang="less">
-.box-item {
+.article-item {
   padding: 10px;
-  height: 70px;
-  border-bottom:1px solid #DCDFE6;
-  box-sizing: border-box;
+  word-break: break-word;
+  // background-position: 0 bottom;
+  // background-repeat: repeat-x;
+  font-size: 28px;
+  line-height: 150%;
+  text-align: left;
+  border-bottom: 2px solid #e2e2e2;
 }
-.msg-header {
-  width: 48px;
-  margin-left:14px;
-  line-height: 300%;
-}
-.title {
+.item-box {
   width: 100%;
-}
-.title-a {
-  color: #afb9c1;
-  /* 标题太长 */
-  display: block;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.title-a:active,.title-a:hover {
-  color: #778087;
-  text-decoration: underline;
-}
-
-.foot-msg a{
-  color: #778087;
-  font-size: 14px;
-}
-.foot-msg {
-  margin-top: 10px;
-  font-size: 12px;
-}
-.foot-msg>span>a{
-  background-color: #ccc;
-  font-size:12px;
-}
-// .foot-msg>span>a:link,
-// .foot-msg>span>:visited,
-// .foot-msg>span>a:hover,
-// .foot-msg>span>a:active {
-//   cursor: pointer;
-//   color: #999;
-//   border-radius: 2px;
-//   text-decoration: none;
-//   background-color: #f5f5f5;
-// }
-.foot-msg>span>strong>a:hover {
-  text-decoration: underline;
-}
-.art-num {
-  width: 60px;
-  height: 50px;
-  padding-left: 10px;
-  padding-right: 10px;
 
 }
-.art-num a {
-  line-height: 450%;
-  background-color: grey;
-  border-radius: 99px;
-  color: #f5f5f5;
-  font-size: 12px;
-  padding: 0 12px;
+.article-content {
+  vertical-align: middle;
+  display: flex;
+  flex-direction: column;
+}
+.col-three {
+  display: flex;
+  justify-content: center;
+  // text-align: center;
+  width: 140px;
+
+}
+
+.article-row {
+  display: flex;
+}
+.avater {
+  width: 48px;
+  align-items: center;
+  vertical-align: top;
+  height: auto;
+}
+.col-gap{
+  width: 20px;
+}
+.row-gap {
+  height: 10px;
+}
+.content-row-one, .content-row-three{
+  display: flex;
+}
+.col-three {
+  display: flex;
+  align-items: center;
+}
+.fade {
+  color: #ccc;
+}
+.small {
+    font-size: 24px;
+}
+.article-title,.last-reply {
+  // color: #afb9c1;
+  color: #778087;
+  word-break: break-word;
+}
+.title-tag {
+  background-color: #f5f5f5;
+  font-size: 24px;
+  line-height: 24px;
+  display: inline-block;
+  padding: 8px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #999;
+}
+.username {
+  color: #778087;
   font-weight: bold;
 }
-img.avater{
-  vertical-align: bottom;
-  width: 48px;
-  height: 48px;
+.last-reply {
+      font-weight: bold;
 }
-
-tbody.tby-box{
-  width: 100%;
+.count{
+  line-height: 24px;
+  font-weight: 1400;
+  color: #fff;
+  background-color: #e5e5e5;
+  display: inline-block;
+  padding: 4px 20px;
+  -moz-border-radius: 24px;
+  -webkit-border-radius: 24px;
+  border-radius: 24px;
+  text-decoration: none;
+  margin-right: 10px;
 }
 </style>

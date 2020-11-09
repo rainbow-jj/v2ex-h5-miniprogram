@@ -45,6 +45,14 @@ const config = {
   h5: {
     publicPath: '/',
     staticDirectory: 'static',
+    devServer: {
+      proxy: {
+        '/api': {
+          target: 'https://www.v2ex.com',  // 接口域名
+          changeOrigin: true,  //是否跨域
+        }
+      }
+    },
     postcss: {
       autoprefixer: {
         enable: true,

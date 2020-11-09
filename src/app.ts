@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import store from './store'
+import axios from 'taro-axios'
 
 import './app.less'
 
@@ -7,6 +8,10 @@ import './app.less'
 import directives from './plugins/directives'
 
 Vue.use(directives)
+// axios.defaults.baseURL = 'https://www.v2ex.com';
+// axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+// axios.defaults.timeout = 2500;
+
 
 const App = new Vue({
   store,
@@ -17,5 +22,6 @@ const App = new Vue({
     return h('block', this.$slots.default)
   }
 })
+
 
 export default App
