@@ -4,7 +4,7 @@
       <view class="article-content">
         <view  class="article-row">
           <view class="col-one">
-            <view href=""><image :src="value.member.avatar_normal" alt="头图" class="avater" /></view>
+            <view href="" class="img"><image :src="value.member.avatar_normal" alt="头图" class="avater" /></view>
           </view>
           <view class="col-gap"></view>
           <view  class="col-two">
@@ -77,10 +77,10 @@ export default Vue.extend({
   display: flex;
 }
 .avater {
+  height: 48px;
   width: 48px;
   align-items: center;
   vertical-align: top;
-  height: auto;
 }
 .col-gap{
   width: 20px;
