@@ -1,10 +1,11 @@
 <template>
   <view class="container">
     <view href="https://www.v2ex.com" class="logoLink"><image id="logo" :src="logo" /></view>
-    <view v-outside-click="sreachClose" class="searchBox" :class="{isClick}" @tap="searchhandler" >
+    <search-drop-down :itemlist="itemlist"></search-drop-down>
+    <!-- <view v-outside-click="sreachClose" class="searchBox" :class="{isClick}" @tap="searchhandler" >
       <image  :src="search" class="searchIcon"/>
-      <input v-model="inputValue" class="searchInput"/>
-    </view>
+      <input v-model="inputValue" class="searchInput" :onInput="handleChange(inputValue)" />
+    </view> -->
     <view v-cloak>
       <view v-outside-click="close">
         <view @tap="isShow=!isShow">
@@ -28,10 +29,10 @@
 </template>
 
 <script lang="typescript">
-  // import Taro from '@tarojs/taro'
-  // import { View } from '@tarojs/components'
+import SearchDropDown from './SearchDropDown.vue'
 
   export default {
+  components: { SearchDropDown },
     data () {
       return {
         inputValue: '',
@@ -40,21 +41,37 @@
         logo: require("./assets/v2ex@2x.png").default,
         iShow: require("./assets/ellipse_light.png").default,
         taggle: require("./assets/toggle-light.png").default,
-        search: require("./assets/search_icon_light.png").default
+        search: require("./assets/search_icon_light.png").default,
+        itemList: ''
       }
     },
-
     methods: {
       sreachClose: function (){
        this.isClick = false
      },
      close: function (){
        this.isShow = false
-      //  this.isClick = false
      },
-      searchhandler: function () {
-        this.isClick = !this.isClick
-        console.log('isFocus:',this.isClick)
+      // searchhandler: function () {
+      //   this.isClick = !this.isClick
+      //   // console.log('isFocus:',this.isClick)
+      // },
+      showItemlist: function() {
+        const that = this
+        Taro.request({
+          url: 'http://192.168.1.10:10086/api/nodes/show.json',
+          header: {
+            'content-type': 'application/json' // 默认值
+          },
+          success: function (res) {
+            // const contextData  = res.data
+            that.itemList = res.data
+            console.log('itemList:', that.itemList)
+          }
+        })
+      },
+      handleChange: function(e){
+        console.log(e)
       }
     }
 
@@ -70,7 +87,7 @@
 .container {
   width: 100%;
   height: 80px;
-  background-color: var(--box-background-color);
+  // background-color: var(--box-background-color);
   border-bottom: 1px solid rgba(0,0,0,.22);
   display: flex;
   align-items: center;

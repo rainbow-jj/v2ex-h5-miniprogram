@@ -4,7 +4,7 @@
       <view class="article-content">
         <view  class="article-row">
           <view class="col-one">
-            <view href="" class="img"><image :src="value.member.avatar_normal" alt="头图" class="avater" /></view>
+            <view href="" class="img"><image :src="value.member.avatar_normal" alt="头图" class="avater" @tap="gotoUser"/></view>
           </view>
           <view class="col-gap"></view>
           <view  class="col-two">
@@ -12,7 +12,7 @@
               <view class="content-row-one">
                 <view href="" class="title-tag">{{ value.node.title }}</view>
                  &nbsp;•&nbsp;
-                <view class="username small">{{ value.member.username }}</view>
+                <view class="username small" @tap="gotoUser">{{ value.member.username }}</view>
               </view>
               <view class="row-gap"></view>
               <view class="content-row-two">
@@ -36,10 +36,19 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import Taro from '@tarojs/taro'
 export default Vue.extend({
   props: {
     value: {
       type: Object
+    }
+  },
+  methods: {
+    gotoUser () {
+      // const { username:any, id: number } = this.value.member
+      Taro.navigateTo({
+        url: `/pages/user/index`,
+      })
     }
   }
 })
@@ -67,14 +76,16 @@ export default Vue.extend({
 }
 .col-three {
   display: flex;
-  justify-content: center;
-  // text-align: center;
+  // justify-content: center;
+  // position: absolute;
   width: 140px;
-
+  align-items: center;
 }
 
 .article-row {
   display: flex;
+
+
 }
 .avater {
   height: 48px;
@@ -91,10 +102,7 @@ export default Vue.extend({
 .content-row-one, .content-row-three{
   display: flex;
 }
-.col-three {
-  display: flex;
-  align-items: center;
-}
+
 .fade {
   color: #ccc;
 }

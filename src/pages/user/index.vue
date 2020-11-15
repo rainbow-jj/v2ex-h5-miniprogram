@@ -1,34 +1,31 @@
 <template>
-  <view class="index">
+  <view class="user">
     <header-bar />
-    <!-- <MainBar />
-    <Footer /> -->
-
+    <user-node />
   </view>
 </template>
 
 <script>
-import HeaderBar from '../../components/HeaderBar/HeaderBar'
-import MainBar from '../../components/MainBar/index.vue'
-import Footer from '../../components/FooterBar/index.vue'
+import HeaderBar from '../../components/HeaderBar/HeaderBar';
+import UserNode from '../../components/UserNode/index'
 
 export default {
-  name: 'Index',
+  // name: 'User',
   components: {
     HeaderBar,
-    MainBar,
-    Footer
+    UserNode
   }
 }
 </script>
 
 <style>
-.index {
+.user {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  /* margin-top: 60px; */
+  /* margin-top: 60p */
+
 }
 </style>

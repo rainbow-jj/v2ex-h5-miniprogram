@@ -44,7 +44,7 @@ export default Vue.extend({
       success: function (res) {
         // const contextData  = res.data
         that.contextData = res.data
-        console.log('contextData',that.contextData)
+
       }
     })
   },

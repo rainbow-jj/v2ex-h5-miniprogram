@@ -67,8 +67,10 @@ const config = {
         }
       }
     }
-  }
+  },
+  outputRoot: `dist/${process.env.TARO_ENV}`
 }
+
 
 module.exports = function (merge) {
   if (process.env.NODE_ENV === 'development') {
