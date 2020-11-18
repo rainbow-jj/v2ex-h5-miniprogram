@@ -1,11 +1,21 @@
 <template>
   <view class="container">
     <view href="https://www.v2ex.com" class="logoLink"><image id="logo" :src="logo" /></view>
-    <search-drop-down :itemlist="itemlist"></search-drop-down>
-    <!-- <view v-outside-click="sreachClose" class="searchBox" :class="{isClick}" @tap="searchhandler" >
-      <image  :src="search" class="searchIcon"/>
-      <input v-model="inputValue" class="searchInput" :onInput="handleChange(inputValue)" />
-    </view> -->
+    <view  class="search clearfix" >
+      <view v-outside-click="sreachClose" class="searchBox" :class="{isClick}" @tap="searchhandler" >
+        <image  :src="search" class="searchIcon"/>
+        <input v-model="inputValue" class="searchInput" :onInput="handleChange(inputValue)" />
+      </view>
+      <view class="search-item-group cell" v-show="length">
+        <text>节点 / Nodes</text>
+        <view v-for="item in datalist" :key="item" @tap="handleSelect">
+          <view>{{ item.name }}</view>
+          <view class="search-item-group cell">
+            <view>Google {{item.name }}</view>
+          </view>
+        </view>
+      </view>
+    </view>
     <view v-cloak>
       <view v-outside-click="close">
         <view @tap="isShow=!isShow">
@@ -28,55 +38,53 @@
   </view>
 </template>
 
-<script lang="typescript">
-import SearchDropDown from './SearchDropDown.vue'
+<script lang="ts">
+import Taro from '@tarojs/taro'
 
-  export default {
-  components: { SearchDropDown },
-    data () {
-      return {
-        inputValue: '',
-        isShow: false,
-        isClick: false,
-        logo: require("./assets/v2ex@2x.png").default,
-        iShow: require("./assets/ellipse_light.png").default,
-        taggle: require("./assets/toggle-light.png").default,
-        search: require("./assets/search_icon_light.png").default,
-        itemList: ''
-      }
-    },
-    methods: {
-      sreachClose: function (){
-       this.isClick = false
-     },
-     close: function (){
-       this.isShow = false
-     },
-      // searchhandler: function () {
-      //   this.isClick = !this.isClick
-      //   // console.log('isFocus:',this.isClick)
-      // },
-      showItemlist: function() {
-        const that = this
-        Taro.request({
-          url: 'http://192.168.1.10:10086/api/nodes/show.json',
-          header: {
-            'content-type': 'application/json' // 默认值
-          },
-          success: function (res) {
-            // const contextData  = res.data
-            that.itemList = res.data
-            console.log('itemList:', that.itemList)
-          }
-        })
-      },
-      handleChange: function(e){
-        console.log(e)
-      }
+export default {
+  data () {
+    return {
+      inputValue: '',
+      isShow: false,
+      isClick: false,
+      itemlist:[], // 应该等于contextData
+      datalist: [],
+      logo: require("./assets/v2ex@2x.png").default,
+      iShow: require("./assets/ellipse_light.png").default,
+      taggle: require("./assets/toggle-light.png").default,
+      search: require("./assets/search_icon_light.png").default,
     }
+  },
+  methods: {
+    sreachClose: function (){
+      this.isClick = false
+    },
+    close: function (){
+      this.isShow = false
+    },
+    searchhandler: function () {
+      this.isClick = !this.isClick
+    },
+    handleSelect: function () {
+      Taro.navigateTo({  // 导航到google
+        url: `google.com`,
+      })
+    },
+    handleChange: function(inputValue){
+      console.log(inputValue)
+      const that = this
+      that.datalist = that.itemlist.filter(function(item, index) {
+        return item.name.indexOf(inputValue) != -1;
+      })
 
-
+    },
+  },
+  computed: {
+    length: function() {
+      return this.datalist.length
+    },
   }
+}
 </script>
 
 <style lang="less">

@@ -4,7 +4,7 @@
       <view class="article-content">
         <view  class="article-row">
           <view class="col-one">
-            <view href="" class="img"><image :src="value.member.avatar_normal" alt="头图" class="avater" @tap="gotoUser"/></view>
+            <view href="" class="img"><image :src="value.member.avatar_normal" alt="头图" class="avater" @tap="gotoUser(value.id)"/></view>
           </view>
           <view class="col-gap"></view>
           <view  class="col-two">
@@ -12,7 +12,7 @@
               <view class="content-row-one">
                 <view href="" class="title-tag">{{ value.node.title }}</view>
                  &nbsp;•&nbsp;
-                <view class="username small" @tap="gotoUser">{{ value.member.username }}</view>
+                <view class="username small" @tap="gotoUser(value.id)">{{ value.member.username }}</view>
               </view>
               <view class="row-gap"></view>
               <view class="content-row-two">
@@ -44,10 +44,11 @@ export default Vue.extend({
     }
   },
   methods: {
-    gotoUser () {
-      // const { username:any, id: number } = this.value.member
-      Taro.navigateTo({
-        url: `/pages/user/index`,
+    async gotoUser (e) {
+      console.log('e',e) //
+      Taro.navigateTo({  // 导航到user 路径
+        url: `/pages/user/index?id=${e}`,
+
       })
     }
   }

@@ -20,6 +20,7 @@ import Articles from './Articles.vue';
 import NodeNav from './NodeNav.vue';
 import Taro from '@tarojs/taro';
 
+
 export default Vue.extend({
   data () {
     return {
@@ -44,6 +45,7 @@ export default Vue.extend({
       success: function (res) {
         // const contextData  = res.data
         that.contextData = res.data
+        // console.log(that.contextData)
 
       }
     })

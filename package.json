@@ -37,8 +37,9 @@
     "@babel/runtime": "^7.7.7",
     "@tarojs/components": "3.0.14",
     "@tarojs/runtime": "3.0.14",
-    "@tarojs/taro": "3.0.14",
+    "@tarojs/taro": "^3.0.17",
     "taro-axios": "^1.1.1",
+    "tarojs-router": "^1.2.9",
     "vue": "^2.5.0",
     "vue-template-compiler": "^2.5.0",
     "vuex": "^3.0.0"

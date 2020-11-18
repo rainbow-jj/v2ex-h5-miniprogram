@@ -1052,6 +1052,13 @@
   dependencies:
     "@tarojs/runtime" "3.0.14"
 
+"@tarojs/api@3.0.17":
+  version "3.0.17"
+  resolved "https://registry.yarnpkg.com/@tarojs/api/-/api-3.0.17.tgz#f3234bbe64d83673d7846889f5ad224a8c836b39"
+  integrity sha512-FPs7/QFV1VS0PWr3YdmfHxOz9Jqp/HNtkRPNbkpF/TMrOSYbFRUIey+jFLGQUSTURmuVJq2N9W7L1cDBfiTJ2w==
+  dependencies:
+    "@tarojs/runtime" "3.0.17"
+
 "@tarojs/components@3.0.14":
   version "3.0.14"
   resolved "https://registry.yarnpkg.com/@tarojs/components/-/components-3.0.14.tgz#781f7b664fa75fd1b7109cba7ca341bae74f175a"
@@ -1147,12 +1154,31 @@
     webpack-format-messages "^2.0.5"
     yauzl "2.10.0"
 
+"@tarojs/react@^3.0.10":
+  version "3.0.17"
+  resolved "https://registry.yarnpkg.com/@tarojs/react/-/react-3.0.17.tgz#b7a7d70402869ee5a6c5665a007a5ff0a8527dc9"
+  integrity sha512-29khwWnfQlWUkJ+n3u9pLgGzP8LRdq+a5MOgJPMZhgTD5mx1FnQbF+LMLkz/PdIHnGVf6hgwGW5q+Cf5FQ1h1g==
+  dependencies:
+    "@tarojs/runtime" "3.0.17"
+    react-reconciler "^0.23.0"
+    scheduler "^0.17.0"
+
 "@tarojs/router@3.0.14":
   version "3.0.14"
   resolved "https://registry.yarnpkg.com/@tarojs/router/-/router-3.0.14.tgz#b781263c05143b985d680da7c9854b62c3d8df3e"
   integrity sha512-T00UAlRnQBy2XsDlzhN9rZhW5hBFLiT191MLie4/zG3XSJxhNgwcoIQAaAKaHDP8E9t5f04hxTJYVICu6P5V+A==
   dependencies:
     "@tarojs/runtime" "3.0.14"
+    history "^4.10.1"
+    universal-router "^8.3.0"
+    url-parse "^1.4.7"
+
+"@tarojs/router@3.0.17":
+  version "3.0.17"
+  resolved "https://registry.yarnpkg.com/@tarojs/router/-/router-3.0.17.tgz#9289719dc1f5ae3d7fa6679549ffd89db7819afb"
+  integrity sha512-NhrH9AMhd02McvDcFUqneEtK5PaIaRhzsFNOEqer1mpZKa47k/l4E72+Wj30/SOQoCO3sl90/HyTIMzV2HfnVA==
+  dependencies:
+    "@tarojs/runtime" "3.0.17"
     history "^4.10.1"
     universal-router "^8.3.0"
     url-parse "^1.4.7"
@@ -1174,6 +1200,11 @@
   resolved "https://registry.yarnpkg.com/@tarojs/runtime/-/runtime-3.0.14.tgz#e337472524d0221be3b2b2e6642278f73f01b610"
   integrity sha512-0LSA4UHAi/clptzIFaIL7lu+RnmBV7xN4DHCbTOfsEWxX8azXXeQ4tgqh8MjIAFAHKgUElZIdFXHSvc0O8u3YQ==
 
+"@tarojs/runtime@3.0.17":
+  version "3.0.17"
+  resolved "https://registry.yarnpkg.com/@tarojs/runtime/-/runtime-3.0.17.tgz#972a11235f1b21259e142f22191656037898e00a"
+  integrity sha512-Jv18GnxxDMGlx1+AoenUqwZr7A/1U9ip3e8g9NkAqD7fo71M2+D7X51Px0HUERvtC4Sdzi8v4aS9aWwz+D98kA==
+
 "@tarojs/shared@3.0.14":
   version "3.0.14"
   resolved "https://registry.yarnpkg.com/@tarojs/shared/-/shared-3.0.14.tgz#899227035d049dda08af6dd64da1b4c11cd5df07"
@@ -1187,6 +1218,20 @@
     "@tarojs/api" "3.0.14"
     "@tarojs/router" "3.0.14"
     "@tarojs/runtime" "3.0.14"
+    base64-js "^1.3.0"
+    jsonp-retry "^1.0.3"
+    mobile-detect "^1.4.2"
+    raf "^3.4.1"
+    whatwg-fetch "^3.4.0"
+
+"@tarojs/taro-h5@3.0.17":
+  version "3.0.17"
+  resolved "https://registry.yarnpkg.com/@tarojs/taro-h5/-/taro-h5-3.0.17.tgz#a95ed484ef2b04f81c0f9816b04a68f28e752b02"
+  integrity sha512-eo4LOHkwQvMsXzIHCUfe62yiAbW8nWx4TQEwzY2ulx5dnfhHTwG5F8UE+XhCl1iI5Mp3cZMEw1x5WieqXqATFw==
+  dependencies:
+    "@tarojs/api" "3.0.17"
+    "@tarojs/router" "3.0.17"
+    "@tarojs/runtime" "3.0.17"
     base64-js "^1.3.0"
     jsonp-retry "^1.0.3"
     mobile-detect "^1.4.2"
@@ -1207,6 +1252,14 @@
   dependencies:
     "@tarojs/api" "3.0.14"
     "@tarojs/taro-h5" "3.0.14"
+
+"@tarojs/taro@^3.0.10", "@tarojs/taro@^3.0.17":
+  version "3.0.17"
+  resolved "https://registry.yarnpkg.com/@tarojs/taro/-/taro-3.0.17.tgz#75c11fcf6d1901193ce01f9c0c0052239b072f9d"
+  integrity sha512-lMWBFv6Nz5x8NF4zoA1YHAAU//eaMZeaWYmAf1qQ1xdxUEBGoTMQWJT6iWOU/mN1+P2rzEzbHrXerdv9T3ypPQ==
+  dependencies:
+    "@tarojs/api" "3.0.17"
+    "@tarojs/taro-h5" "3.0.17"
 
 "@tarojs/webpack-runner@3.0.14":
   version "3.0.14"
@@ -5719,6 +5772,11 @@ known-css-properties@^0.6.0:
   resolved "https://registry.yarnpkg.com/known-css-properties/-/known-css-properties-0.6.1.tgz#31b5123ad03d8d1a3f36bd4155459c981173478b"
   integrity sha512-nQRpMcHm1cQ6gmztdvLcIvxocznSMqH/y6XtERrWrHaymOYdDGroRqetJvJycxGEr1aakXiigDgn7JnzuXlk6A==
 
+koa-compose@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/koa-compose/-/koa-compose-4.1.0.tgz#507306b9371901db41121c812e923d0d67d3e877"
+  integrity sha512-8ODW8TrDuMYvXRwra/Kh7/rJo9BtOfPc6qO8eAfC80CnCvSjSl0bkRM24X6/XBBEyj0v1nRUQ1LyOy3dbqOWXw==
+
 less-loader@5.0.0, less-loader@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/less-loader/-/less-loader-5.0.0.tgz#498dde3a6c6c4f887458ee9ed3f086a12ad1b466"
@@ -5915,7 +5973,7 @@ longest-streak@^2.0.1:
   resolved "https://registry.yarnpkg.com/longest-streak/-/longest-streak-2.0.4.tgz#b8599957da5b5dab64dee3fe316fa774597d90e4"
   integrity sha512-vM6rUVCVUJJt33bnmHiZEvr7wPT78ztX7rojL+LW51bHtLh6HTjx84LA5W4+oa6aKEJA7jJu5LR6vQRBpA5DVg==
 
-loose-envify@^1.0.0, loose-envify@^1.2.0:
+loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.2.0, loose-envify@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/loose-envify/-/loose-envify-1.4.0.tgz#71ee51fa7be4caec1a63839f7e682d8132d30caf"
   integrity sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==
@@ -7494,6 +7552,15 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
+prop-types@^15.6.2:
+  version "15.7.2"
+  resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
+  integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
+  dependencies:
+    loose-envify "^1.4.0"
+    object-assign "^4.1.1"
+    react-is "^16.8.1"
+
 proxy-addr@~2.0.5:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/proxy-addr/-/proxy-addr-2.0.6.tgz#fdc2336505447d3f2f2c638ed272caf614bbb2bf"
@@ -7652,6 +7719,30 @@ raw-body@2.4.0:
     http-errors "1.7.2"
     iconv-lite "0.4.24"
     unpipe "1.0.0"
+
+react-is@^16.8.1:
+  version "16.13.1"
+  resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
+  integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
+
+react-reconciler@^0.23.0:
+  version "0.23.0"
+  resolved "https://registry.yarnpkg.com/react-reconciler/-/react-reconciler-0.23.0.tgz#5f0bfc35dda030b0220c07de11f93131c5d6db63"
+  integrity sha512-vV0KlLimP9a/NuRcM6GRVakkmT6MKSzhfo8K72fjHMnlXMOhz9GlPe+/tCp5CWBkg+lsMUt/CR1nypJBTPfwuw==
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    prop-types "^15.6.2"
+    scheduler "^0.17.0"
+
+react@^16.13.1:
+  version "16.14.0"
+  resolved "https://registry.yarnpkg.com/react/-/react-16.14.0.tgz#94d776ddd0aaa37da3eda8fc5b6b18a4c9a3114d"
+  integrity sha512-0X2CImDkJGApiAlcf0ODKIneSwBPhqJawOa5wCtKbu7ZECrmS26NvtSILynQ66cgkT/RJ4LidJOc3bUESwmU8g==
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    prop-types "^15.6.2"
 
 read-cache@^1.0.0:
   version "1.0.0"
@@ -8202,6 +8293,14 @@ saxes@^3.1.9:
   integrity sha512-Ydydq3zC+WYDJK1+gRxRapLIED9PWeSuuS41wqyoRmzvhhh9nc+QQrVMKJYzJFULazeGhzSV0QleN2wD3boh2g==
   dependencies:
     xmlchars "^2.1.1"
+
+scheduler@^0.17.0:
+  version "0.17.0"
+  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.17.0.tgz#7c9c673e4ec781fac853927916d1c426b6f3ddfe"
+  integrity sha512-7rro8Io3tnCPuY4la/NuI5F2yfESpnfZyT6TtkXnSWVkcu0BCDJ+8gk5ozUaFaxpIyNuWAPXrH0yFcSi28fnDA==
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
 
 schema-utils@^1.0.0:
   version "1.0.0"
@@ -9087,6 +9186,16 @@ taro-axios@^1.1.1:
   integrity sha512-Ahbxef5w6uy6wiJkooOxQbEeiqyE5vt/ikUe/bPDDhguZ7NjDSeGlNqvzLW+3lyT8ZFV+s5oqMI2EZ5c2Edwgg==
   dependencies:
     axios "0.19.2"
+
+tarojs-router@^1.2.9:
+  version "1.2.9"
+  resolved "https://registry.yarnpkg.com/tarojs-router/-/tarojs-router-1.2.9.tgz#51c8a8577b184e3ab7dcfc6e4fbc76e3c67bfbb8"
+  integrity sha512-51TAhL2BQtYSHsJVfIQ8Xgg4upimtgkFMakC19QR4W7l9N5Jv5brO7qPJO4YYqAT0mjyfWumvsCpIGHghgc/TQ==
+  dependencies:
+    "@tarojs/react" "^3.0.10"
+    "@tarojs/taro" "^3.0.10"
+    koa-compose "^4.1.0"
+    react "^16.13.1"
 
 terser-webpack-plugin@^1.4.3:
   version "1.4.5"

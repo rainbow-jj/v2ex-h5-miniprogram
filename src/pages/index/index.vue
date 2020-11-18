@@ -1,8 +1,8 @@
 <template>
   <view class="index">
     <header-bar />
-    <!-- <MainBar />
-    <Footer /> -->
+    <main-bar />
+    <footer />
 
   </view>
 </template>

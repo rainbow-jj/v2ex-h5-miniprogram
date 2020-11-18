@@ -21,12 +21,18 @@
 </template>
 
 <script lang="ts">
+import { getCurrentInstance } from '@tarojs/taro';
 import Vue from 'vue';
-
 export default Vue.extend({
   data () {
     return {
+
     }
+  },
+  created () {
+    console.log('router',getCurrentInstance().router)
+    // const params = this.$router.params.e
+    // console.log('params',params)
   }
 })
 </script>
