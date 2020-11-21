@@ -1,27 +1,27 @@
 <template>
   <view class="article-item">
-    <view class="item-box">
+    <!-- <view class="item-box"> -->
       <view class="article-content">
         <view  class="article-row">
-          <view class="col-one">
-            <view href="" class="img"><image :src="value.member.avatar_normal" alt="头图" class="avater" @tap="gotoUser(value.id)"/></view>
-          </view>
-          <view class="col-gap"></view>
-          <view  class="col-two">
-            <view class="content-row">
-              <view class="content-row-one">
-                <view href="" class="title-tag">{{ value.node.title }}</view>
-                 &nbsp;•&nbsp;
-                <view class="username small" @tap="gotoUser(value.id)">{{ value.member.username }}</view>
-              </view>
-              <view class="row-gap"></view>
-              <view class="content-row-two">
-                <text class="article-title">{{ value.title }}</text>
-              </view>
-              <view class="row-gap"></view>
-              <view class="content-row-three small fade">
-                  1 分钟前 &nbsp;•&nbsp; 最后回复来自
-                  <view href="" class="last-reply">{{ value.last_reply_by }}</view>
+          <view class="col-left">
+            <view  class="col-two">
+              <view class="content-row">
+                <view class="content-row-one">
+                  <view href="" class="img">
+                    <image :src="value.member.avatar_normal" alt="头图" class="avater" @tap="gotoUser(value.member.id)"/>
+                  </view>
+                  <view href="" class="title-tag">{{ value.node.title }}</view>
+                  &nbsp;•&nbsp;
+                  <view class="username small" @tap="gotoUser(value.member.id)">{{ value.member.username }}</view>
+                </view>
+                <view class="content-row-two">
+                  <text class="article-title">{{ value.title }}</text>
+                </view>
+                <view class="row-gap"></view>
+                <view class="content-row-three small fade">
+                    {{timeAgo(value.last_modified)}} &nbsp;•&nbsp; 最后回复来自
+                    <view href="" class="last-reply">{{ value.last_reply_by }}</view>
+                </view>
               </view>
             </view>
           </view>
@@ -29,7 +29,7 @@
             <view href="" class="count">{{ value.replies }}</view>
           </view>
         </view>
-      </view>
+      <!-- </view> -->
     </view>
   </view>
 </template>
@@ -37,6 +37,8 @@
 <script lang="ts">
 import Vue from 'vue'
 import Taro from '@tarojs/taro'
+import { common } from '../../mixin'
+
 export default Vue.extend({
   props: {
     value: {
@@ -44,14 +46,14 @@ export default Vue.extend({
     }
   },
   methods: {
-    async gotoUser (e) {
+    gotoUser (e) {
       console.log('e',e) //
       Taro.navigateTo({  // 导航到user 路径
         url: `/pages/user/index?id=${e}`,
-
       })
     }
-  }
+  },
+  mixins: [common]
 })
 </script>
 
@@ -59,8 +61,6 @@ export default Vue.extend({
 .article-item {
   padding: 10px;
   word-break: break-word;
-  // background-position: 0 bottom;
-  // background-repeat: repeat-x;
   font-size: 28px;
   line-height: 150%;
   text-align: left;
@@ -77,16 +77,14 @@ export default Vue.extend({
 }
 .col-three {
   display: flex;
-  // justify-content: center;
-  // position: absolute;
-  width: 140px;
+  // width: 140px;
   align-items: center;
+  // text-align: right;
 }
 
 .article-row {
   display: flex;
-
-
+  justify-content: space-between;
 }
 .avater {
   height: 48px;
@@ -103,7 +101,14 @@ export default Vue.extend({
 .content-row-one, .content-row-three{
   display: flex;
 }
+.content-row-three {
+  padding-left:58px;
 
+}
+.content-row-two {
+  padding-left:58px;
+  max-width: 540px;
+}
 .fade {
   color: #ccc;
 }
@@ -116,6 +121,7 @@ export default Vue.extend({
   word-break: break-word;
 }
 .title-tag {
+  margin-left: 10px;
   background-color: #f5f5f5;
   font-size: 24px;
   line-height: 24px;
@@ -132,13 +138,13 @@ export default Vue.extend({
   font-weight: bold;
 }
 .last-reply {
-      font-weight: bold;
+  font-weight: bold;
 }
 .count{
   line-height: 24px;
   font-weight: 1400;
   color: #fff;
-  background-color: #e5e5e5;
+  background-color: #aab0c6;
   display: inline-block;
   padding: 4px 20px;
   -moz-border-radius: 24px;

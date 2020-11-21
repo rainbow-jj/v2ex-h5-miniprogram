@@ -43,9 +43,8 @@ export default Vue.extend({
         'content-type': 'application/json' // 默认值
       },
       success: function (res) {
-        // const contextData  = res.data
         that.contextData = res.data
-        // console.log(that.contextData)
+        console.log(that.contextData)
 
       }
     })

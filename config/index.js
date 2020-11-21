@@ -43,6 +43,9 @@ const config = {
     }
   },
   h5: {
+    router:{
+      mode: 'hash'
+    },
     publicPath: '/',
     staticDirectory: 'static',
     devServer: {

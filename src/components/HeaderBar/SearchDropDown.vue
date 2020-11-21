@@ -45,7 +45,7 @@ export default {
         // console.log('inputValue:',e)
         const that = this
         Taro.request({
-          url: 'http://192.168.1.10:10086/api/nodes/show.json',
+          url: '/api/nodes/show.json',
           header: {
             'content-type': 'application/json' // 默认值
           },

@@ -39,7 +39,7 @@
 </template>
 
 <script lang="ts">
-import Taro from '@tarojs/taro'
+import Taro from '@tarojs/taro';
 
 export default {
   data () {
@@ -71,12 +71,23 @@ export default {
       })
     },
     handleChange: function(inputValue){
-      console.log(inputValue)
       const that = this
-      that.datalist = that.itemlist.filter(function(item, index) {
-        return item.name.indexOf(inputValue) != -1;
+      console.log(inputValue)
+      // 获取 nodes的 api 然后进行判断过滤。
+      Taro.request({
+        url:'/api/nodes/show.json',
+        data: {
+          name
+        },
+        success: function (res) {
+          that.itemlist  = res.data
+          console.log('nodes',res.data)
+        }
       })
-
+       // console.log('itemlist',that.itemlist)
+      // that.datalist = that.itemlist.filter(function(item) {
+      //   return item.name.indexOf(inputValue) != -1;
+      // })
     },
   },
   computed: {

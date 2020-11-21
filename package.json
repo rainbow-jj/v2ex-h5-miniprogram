@@ -40,6 +40,7 @@
     "@tarojs/taro": "^3.0.17",
     "taro-axios": "^1.1.1",
     "tarojs-router": "^1.2.9",
+    "timeago.js": "^4.0.2",
     "vue": "^2.5.0",
     "vue-template-compiler": "^2.5.0",
     "vuex": "^3.0.0"

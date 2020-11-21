@@ -5,12 +5,12 @@
         <view class="table-box">
           <view class="table-body">
             <view class="table-tr">
-              <view class="table-td-one"><image src="" class="user-img"></image></view>
+              <view class="table-td-one"><image :src="usercontent.avatar_large" class="user-img"></image></view>
               <view class="table-td-two"></view>
               <view class="table-td-three">
                 <view class="fr"></view>
-                <text class="user-title">Skmgo</text>
-                <text class="gray">V2EX 第 467131 号会员，加入于 2020-01-30 02:57:47 +08:00</text>
+                <text class="user-title">{{usercontent.username}}</text>
+                <text class="gray">V2EX 第 467131 号会员，加入于 {{parseDate(usercontent.created)}}</text>
               </view>
             </view>
           </view>
@@ -21,19 +21,32 @@
 </template>
 
 <script lang="ts">
+import Taro from '@tarojs/taro';
 import { getCurrentInstance } from '@tarojs/taro';
 import Vue from 'vue';
+import { common } from '../../mixin';
+
 export default Vue.extend({
   data () {
     return {
-
+      usercontent: {}
     }
   },
   created () {
-    console.log('router',getCurrentInstance().router)
-    // const params = this.$router.params.e
-    // console.log('params',params)
-  }
+    const that = this
+    const { id } = getCurrentInstance().router?.params!;
+    Taro.request({
+      url:'http://192.168.1.10:10086/api/members/show.json',
+      data: {
+        id
+      },
+      success: function (res) {
+        that.usercontent = res.data
+        console.log('that.usercontent',that.usercontent)
+      }
+    })
+  },
+  mixins:[common],
 })
 </script>
 
@@ -74,7 +87,7 @@ export default Vue.extend({
   .table-td-one {
     width: 112px;
     vertical-align: top;
-    background-color: aliceblue;
+
   }
   .table-td-two {
     width: 20px;
