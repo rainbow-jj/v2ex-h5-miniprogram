@@ -18,6 +18,7 @@
 
 <script>
 import Taro from '@tarojs/taro';
+import { API } from '../../api';
 
 export default {
   data() {
@@ -31,7 +32,7 @@ export default {
   },
 
   props: {
-    itemlist:Array,
+
   },
   methods: {
       sreachClose: function (){
@@ -39,28 +40,19 @@ export default {
      },
       searchhandler: function () {
         this.isClick = !this.isClick
-        // console.log('isFocus:',this.isClick)
+        console.log('isFocus:',this.isClick)
       },
       handleChange: function(e){
-        // console.log('inputValue:',e)
-        const that = this
         Taro.request({
-          url: '/api/nodes/show.json',
+          url: API.getSearchNode(),
           header: {
             'content-type': 'application/json' // 默认值
           },
-          success: function (res) {
-            // const contextData  = res.data
-            that.itemlist = res.data
-            // console.log('itemList:', that.itemlist)
+          success: (res) => {
+            console.log('/nodes/show.json',res.data)
+            this.itemlist = res.data
           }
         });
-        // this.nodatatext = e
-        // console.log(e.currentTarget.value)
-        // let vm = this.searchvalue = e.currentTarget.value
-        // vm.datalist = vm.itemlist.filter(function(item,index, arr){
-        //   return item.name.indexOf(searchvalue) != -1;
-        // })
       }
   },
   computed: {

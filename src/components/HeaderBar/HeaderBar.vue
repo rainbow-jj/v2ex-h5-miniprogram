@@ -1,9 +1,9 @@
 <template>
   <view class="container">
-    <view href="https://www.v2ex.com" class="logoLink"><image id="logo" :src="logo" /></view>
+    <view class="logoLink"><image id="logo" src="./assets/v2ex@2x.png" lazyLoad @tap="goToIndex"/></view>
     <view  class="search clearfix" >
       <view v-outside-click="sreachClose" class="searchBox" :class="{isClick}" @tap="searchhandler" >
-        <image  :src="search" class="searchIcon"/>
+        <image  src="./assets/search_icon_light.png" class="searchIcon"/>
         <input v-model="inputValue" class="searchInput" :onInput="handleChange(inputValue)" />
       </view>
       <view class="search-item-group cell" v-show="length">
@@ -19,17 +19,17 @@
     <view v-cloak>
       <view v-outside-click="close">
         <view @tap="isShow=!isShow">
-          <image :src="iShow" class="showIcon" />
+          <image src="./assets/ellipse_light.png" class="showIcon" />
         </view>
         <view class="dropDown" v-show="isShow" >
           <view class="cellBox">
             <view class="item" href="/">首页</view>
             <view class="item" href="/signup">注册</view>
-            <view class="item" href="/loginup">登录</view>
+            <view class="item" @tap="gotoSignin">登录</view>
           </view>
           <view class="cell">
             <view href="settings/night/toggle?once=40365" class="top">
-              <image :src="taggle" class="taggleIcon"/>
+              <image src="./assets/toggle-light.png" class="taggleIcon"/>
             </view>
           </view>
         </view>
@@ -47,12 +47,8 @@ export default {
       inputValue: '',
       isShow: false,
       isClick: false,
-      itemlist:[], // 应该等于contextData
-      datalist: [],
-      logo: require("./assets/v2ex@2x.png").default,
-      iShow: require("./assets/ellipse_light.png").default,
-      taggle: require("./assets/toggle-light.png").default,
-      search: require("./assets/search_icon_light.png").default,
+      datalist: [], //调api时渲染
+
     }
   },
   methods: {
@@ -70,25 +66,23 @@ export default {
         url: `google.com`,
       })
     },
-    handleChange: function(inputValue){
-      const that = this
-      console.log(inputValue)
-      // 获取 nodes的 api 然后进行判断过滤。
-      Taro.request({
-        url:'/api/nodes/show.json',
-        data: {
-          name
-        },
-        success: function (res) {
-          that.itemlist  = res.data
-          console.log('nodes',res.data)
-        }
+    goToIndex:function () {
+      Taro.redirectTo({
+        url: '/pages/index/index'
       })
-       // console.log('itemlist',that.itemlist)
-      // that.datalist = that.itemlist.filter(function(item) {
-      //   return item.name.indexOf(inputValue) != -1;
-      // })
     },
+    handleChange: function(inputValue2){
+        this.bus.$emit("inputData",inputValue2)
+      // 获取 nodes的 api 然后进行判断过滤。
+      // console.log('taro.env', Taro.getEnv(), Taro.ENV_TYPE)
+
+    },
+    gotoSignin: function (e) {
+      console.log('gotoSignin',e) //
+      Taro.navigateTo({  // 导航到user 路径
+        url: '/pages/login/index',
+      })
+    }
   },
   computed: {
     length: function() {
@@ -98,7 +92,7 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="less" >
 
 [v-cloak] {
   display: none;
@@ -106,7 +100,7 @@ export default {
 .container {
   width: 100%;
   height: 80px;
-  // background-color: var(--box-background-color);
+
   border-bottom: 1px solid rgba(0,0,0,.22);
   display: flex;
   align-items: center;
@@ -143,7 +137,7 @@ export default {
   text-align: left;
   line-height: 150%;
   padding: 20px;
-  border-bottom: 1px solid #e2e2e2;
+  border-bottom: 2px solid #e2e2e2;
 }
 .item {
   font-size: 32px;
@@ -156,12 +150,12 @@ export default {
 }
 .taggleIcon {
   width: 90px;
-  height: 36px;
+  height: 20px;
 }
 .cell {
   display: flex;
   justify-content: start;
-  margin-left: 20px;
+  // margin-left: 20px;
 }
 
 .logoLink {
@@ -192,7 +186,6 @@ export default {
   align-items: left;
 }
 .weui-input  {
-  background-color: #f9f9f9;
   width: 200px;
   height: 32px;
   display: block;

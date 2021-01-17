@@ -1,4 +1,3 @@
-// 自制 Tag 标签
 <template>
   <view
   :class="['tab', { tab_current: active }]"

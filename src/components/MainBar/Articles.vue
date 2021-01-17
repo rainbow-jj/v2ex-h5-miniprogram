@@ -1,35 +1,33 @@
 <template>
-  <view class="article-item">
-    <!-- <view class="item-box"> -->
-      <view class="article-content">
-        <view  class="article-row">
-          <view class="col-left">
-            <view  class="col-two">
-              <view class="content-row">
-                <view class="content-row-one">
-                  <view href="" class="img">
-                    <image :src="value.member.avatar_normal" alt="头图" class="avater" @tap="gotoUser(value.member.id)"/>
-                  </view>
-                  <view href="" class="title-tag">{{ value.node.title }}</view>
-                  &nbsp;•&nbsp;
-                  <view class="username small" @tap="gotoUser(value.member.id)">{{ value.member.username }}</view>
+  <view class="article-item" :style="css">
+    <view class="article-content">
+      <view  class="article-row">
+        <view class="col-left">
+          <view  class="col-two">
+            <view class="content-row" >
+              <view class="content-row-one">
+                <view href="" class="img">
+                  <image :src="data[index].member.avatar_normal" alt="头图" class="avater" @tap="gotoUser(data[index].member.id)"/>
                 </view>
-                <view class="content-row-two">
-                  <text class="article-title">{{ value.title }}</text>
-                </view>
-                <view class="row-gap"></view>
-                <view class="content-row-three small fade">
-                    {{timeAgo(value.last_modified)}} &nbsp;•&nbsp; 最后回复来自
-                    <view href="" class="last-reply">{{ value.last_reply_by }}</view>
-                </view>
+                <view href="" class="title-tag">{{ data[index].node.title }}</view>
+                &nbsp;•&nbsp;
+                <view class="username small" @tap="gotoUser(data[index].member.id)">{{ data[index].member.username }}</view>
+              </view>
+              <view class="content-row-two">
+                <text class="article-title">{{ data[index].title }}</text>
+              </view>
+              <view class="row-gap"></view>
+              <view class="content-row-three small fade">
+                  {{timeAgo(data[index].last_modified)}} &nbsp;•&nbsp; 最后回复来自
+                  <view href="" class="last-reply">{{ data[index].last_reply_by }}</view>
               </view>
             </view>
           </view>
-          <view class="col-three">
-            <view href="" class="count">{{ value.replies }}</view>
-          </view>
         </view>
-      <!-- </view> -->
+        <view class="col-three">
+          <view href="" class="count">{{ data[index].replies }}</view>
+        </view>
+      </view>
     </view>
   </view>
 </template>
@@ -40,14 +38,15 @@ import Taro from '@tarojs/taro'
 import { common } from '../../mixin'
 
 export default Vue.extend({
-  props: {
-    value: {
-      type: Object
-    }
-  },
+  props: ['index', 'data', 'css'],
+  // props: {
+  //   value: {
+  //     type: Object
+  //   }
+  // },
   methods: {
     gotoUser (e) {
-      console.log('e',e) //
+      // console.log('e',e)
       Taro.navigateTo({  // 导航到user 路径
         url: `/pages/user/index?id=${e}`,
       })
@@ -59,30 +58,34 @@ export default Vue.extend({
 
 <style lang="less">
 .article-item {
-  padding: 10px;
+  box-sizing: border-box;
+  padding: 20px;
   word-break: break-word;
   font-size: 28px;
   line-height: 150%;
   text-align: left;
   border-bottom: 2px solid #e2e2e2;
+  // height: 400px;
 }
 .item-box {
   width: 100%;
 
-}
+  }
 .article-content {
   vertical-align: middle;
   display: flex;
   flex-direction: column;
+  height: 100%;
+
 }
 .col-three {
   display: flex;
-  // width: 140px;
   align-items: center;
-  // text-align: right;
+
 }
 
 .article-row {
+  height: 100%;
   display: flex;
   justify-content: space-between;
 }
@@ -116,9 +119,15 @@ export default Vue.extend({
     font-size: 24px;
 }
 .article-title,.last-reply {
-  // color: #afb9c1;
   color: #778087;
   word-break: break-word;
+}
+.article-title {
+  overflow:hidden;
+  text-overflow:ellipsis;
+  display:-webkit-box;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:2;
 }
 .title-tag {
   margin-left: 10px;

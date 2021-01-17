@@ -25,6 +25,7 @@ import Taro from '@tarojs/taro';
 import { getCurrentInstance } from '@tarojs/taro';
 import Vue from 'vue';
 import { common } from '../../mixin';
+import {API} from '../../api';
 
 export default Vue.extend({
   data () {
@@ -36,13 +37,13 @@ export default Vue.extend({
     const that = this
     const { id } = getCurrentInstance().router?.params!;
     Taro.request({
-      url:'http://192.168.1.10:10086/api/members/show.json',
+      url: API.getUserNode(),
       data: {
         id
       },
       success: function (res) {
         that.usercontent = res.data
-        console.log('that.usercontent',that.usercontent)
+        console.log('/members/show.json',that.usercontent)
       }
     })
   },
@@ -53,7 +54,7 @@ export default Vue.extend({
 <style lang="less">
   #wrapper {
     text-align: center;
-    background-color: #22303f;
+    background-color: #e2e2e2;
   }
   .content {
     min-width: 600px;
@@ -63,11 +64,11 @@ export default Vue.extend({
     margin: 0 auto;
   }
   .box {
-    background-color: #18222d;
+    // background-color: #18222d;
     border-radius: 6px;
     color: #d1d5d9;
     box-shadow: 0 3px 6px rgba(0,0,0,.1);
-    border-bottom: 2px solid #22303f;
+    // border-bottom: 2px solid #22303f;
   }
   .inner {
     text-align: left;
@@ -79,6 +80,7 @@ export default Vue.extend({
     width: 100%;
     box-sizing: border-box;
     border-color: grey;
+    background-color:white ;
   }
   .table-body {
     vertical-align: middle;
@@ -98,6 +100,7 @@ export default Vue.extend({
   }
   .table-tr {
     display: flex;
+    padding: 10px;
   }
   .user-img {
     max-width: 72px;

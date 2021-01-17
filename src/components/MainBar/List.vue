@@ -31,6 +31,8 @@ export default Vue.extend({
       // :active="index === activeIndex" 将active 设置为要变得状态，所以就让已经显示点击的状态：activeIndex 等于传递过来的 index
       // active 对应的就是 子组件传递过来的 index 需要改变的样式下标了。
       this.activeIndex = index
+      this.bus.$emit("tagContent",this.Navtitle[this.activeIndex])
+
     }
   }
 })

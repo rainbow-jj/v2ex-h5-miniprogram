@@ -1,6 +1,6 @@
 <template>
-   <view class="box">
-     <view class="cell flex-one-row">
+  <view class="box">
+    <view class="cell flex-one-row">
        <text class="fade">V2EX</text>
         <text class="look-node">浏览全部节点 -></text>
      </view>
@@ -11,22 +11,29 @@
             <view class="td-left">分享与探索</view>
             <view class="col"></view>
             <view class="td-right">
-              <view class="tagtext">问与答 分析发现 分析创造 奇思妙想 分析邀请码 自言自语 随想 设计 Blog</view>
+              <view class="tagtext">
+                  <tag v-for="(item) in ShareAndExplore" :key="item" :item="item" ></tag>
+              </view>
             </view>
           </view>
         </view>
        </view>
      </view>
-   </view>
+  </view>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
+import Tag from './Tag.vue'
 export default Vue.extend({
   data() {
     return {
+      ShareAndExplore:['问与答', '分析发现', '分析创造', '奇思妙想', '分析邀请码', '自言自语', '随想', '设计', 'Blog']
     }
-  }
+  },
+  components: {
+    Tag,
+  },
 })
 </script>
 
@@ -43,7 +50,6 @@ export default Vue.extend({
   font-size: 28px;
   line-height: 150%;
   text-align: left;
-  border-bottom: 2px solid var(--box-border-color);
 }
 .flex-one-row {
   display: flex;
