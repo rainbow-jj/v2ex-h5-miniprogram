@@ -1,24 +1,36 @@
 <template>
   <view class="container">
-    <a href="https://www.v2ex.com" class="logoLink"><img id="logo" :src="logo" /></a>
-    <view v-outside-click="sreachClose" class="searchBox" :class="{isClick}" @tap="searchhandler" >
-      <img  :src="search" class="searchIcon"/>
-      <input v-model="inputValue" class="searchInput"/>
+    <view class="logoLink"><image id="logo" src="./assets/v2ex@2x.png" lazyLoad @tap="goToIndex"/></view>
+    <view  class="search clearfix" >
+      <view v-outside-click="sreachClose" class="searchBox" :class="{isClick}" @tap="searchhandler" >
+        <image  src="./assets/search_icon_light.png" class="searchIcon"/>
+        <input v-model="inputValue" class="searchInput" :onInput="handleChange(inputValue)" />
+      </view>
+      <view class="search-item-group cell" v-show="length">
+        <text>节点 / Nodes</text>
+        <view v-for="item in datalist" :key="item" @tap="handleSelect">
+          <view>{{ item.name }}</view>
+          <view class="search-item-group cell">
+            <view>Google {{item.name }}</view>
+          </view>
+        </view>
+      </view>
     </view>
     <view v-cloak>
       <view v-outside-click="close">
         <view @tap="isShow=!isShow">
-          <img :src="iShow" class="showIcon" />
+          <image src="./assets/ellipse_light.png" class="showIcon" />
         </view>
         <view class="dropDown" v-show="isShow" >
           <view class="cellBox">
-            <a class="item" href="/">首页</a>
-            <a class="item" href="/signup">注册</a>
-            <a class="item" href="/loginup">登录</a>
+            <view class="item" href="/">首页</view>
+            <view class="item" href="/signup">注册</view>
+            <view class="item" @tap="gotoSignin">登录</view>
           </view>
           <view class="cell">
-            <a href="settings/night/toggle?once=40365" class="top">
-              <img :src="taggle" class="taggleIcon"/></a>
+            <view href="settings/night/toggle?once=40365" class="top">
+              <image src="./assets/toggle-light.png" class="taggleIcon"/>
+            </view>
           </view>
         </view>
       </view>
@@ -26,45 +38,61 @@
   </view>
 </template>
 
-<script>
-  import Taro from '@tarojs/taro'
-  import { View } from '@tarojs/components'
+<script lang="ts">
+import Taro from '@tarojs/taro';
 
-  export default {
-    data () {
-      return {
-        inputValue: '',
-        isShow: false,
-        isClick: false,
-        logo: require("./assets/v2ex@2x.png").default,
-        iShow: require("./assets/ellipse_light.png").default,
-        taggle: require("./assets/toggle-light.png").default,
-        search: require("./assets/search_icon_light.png").default
-      }
-    },
-    // components: {
-    //   View
-    // },
-    methods: {
-      sreachClose: function (){
-      //  this.isShow = false
-       this.isClick = false
-     },
-     close: function (){
-       this.isShow = false
-      //  this.isClick = false
-     },
-      searchhandler: function () {
-        this.isClick = !this.isClick
-        console.log('isFocus:',this.isClick)
-      }
+export default {
+  data () {
+    return {
+      inputValue: '',
+      isShow: false,
+      isClick: false,
+      datalist: [], //调api时渲染
+
     }
+  },
+  methods: {
+    sreachClose: function (){
+      this.isClick = false
+    },
+    close: function (){
+      this.isShow = false
+    },
+    searchhandler: function () {
+      this.isClick = !this.isClick
+    },
+    handleSelect: function () {
+      Taro.navigateTo({  // 导航到google
+        url: `google.com`,
+      })
+    },
+    goToIndex:function () {
+      Taro.redirectTo({
+        url: '/pages/index/index'
+      })
+    },
+    handleChange: function(inputValue2){
+        this.bus.$emit("inputData",inputValue2)
+      // 获取 nodes的 api 然后进行判断过滤。
+      // console.log('taro.env', Taro.getEnv(), Taro.ENV_TYPE)
 
-
+    },
+    gotoSignin: function (e) {
+      console.log('gotoSignin',e) //
+      Taro.navigateTo({  // 导航到user 路径
+        url: '/pages/login/index',
+      })
+    }
+  },
+  computed: {
+    length: function() {
+      return this.datalist.length
+    },
   }
+}
 </script>
 
-<style lang="less">
+<style lang="less" >
 
 [v-cloak] {
   display: none;
@@ -72,7 +100,7 @@
 .container {
   width: 100%;
   height: 80px;
-  background-color: var(--box-background-color);
+
   border-bottom: 1px solid rgba(0,0,0,.22);
   display: flex;
   align-items: center;
@@ -89,6 +117,7 @@
 
 .dropDown {
   position: absolute;
+  background-color: #fff;
   right: 1px;
   top: 84px;
   z-index: 1000;
@@ -108,7 +137,7 @@
   text-align: left;
   line-height: 150%;
   padding: 20px;
-  border-bottom: 1px solid #e2e2e2;
+  border-bottom: 2px solid #e2e2e2;
 }
 .item {
   font-size: 32px;
@@ -119,10 +148,14 @@
   text-decoration: none;
 
 }
+.taggleIcon {
+  width: 90px;
+  height: 20px;
+}
 .cell {
   display: flex;
   justify-content: start;
-  margin-left: 20px;
+  // margin-left: 20px;
 }
 
 .logoLink {
@@ -140,6 +173,7 @@
   background-color: #f9f9f9;
   width: 256px;
   height: 52px;
+  text-align: left;
 
 }
 .searchIcon {
@@ -148,16 +182,19 @@
   margin-top: 9px;
 
 }
-// .weui-input {
-//   width: 256px;
-//   height: 52px;
-//   padding-left: 10px;
-// }
+.searchInput {
+  align-items: left;
+}
 .weui-input  {
-  background-color: #f9f9f9;
   width: 200px;
-  height: 100%;
+  height: 32px;
   display: block;
+  width: 4.26667rem;
+  height: 100%;
+  margin-left: 10px;
+  text-align: start;
+  display: block;
+
 }
 .isClick {
   width: 400px;
@@ -172,7 +209,6 @@
 input {
   outline: none;
   border: none;
-
 
 }
 </style>

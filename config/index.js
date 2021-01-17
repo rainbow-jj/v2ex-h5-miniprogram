@@ -20,6 +20,10 @@ const config = {
   },
   framework: 'vue',
   mini: {
+    webpackChain(chain, webpack) {
+      chain.plugin('analyzer')
+        .use(require('webpack-bundle-analyzer').BundleAnalyzerPlugin, [])
+    },
     postcss: {
       pxtransform: {
         enable: true,
@@ -43,8 +47,19 @@ const config = {
     }
   },
   h5: {
+    router:{
+      mode: 'hash'
+    },
     publicPath: '/',
     staticDirectory: 'static',
+    devServer: {
+      proxy: {
+        '/api': {
+          target: 'https://www.v2ex.com',  // 接口域名
+          changeOrigin: true,  //是否跨域
+        }
+      }
+    },
     postcss: {
       autoprefixer: {
         enable: true,
@@ -59,8 +74,10 @@ const config = {
         }
       }
     }
-  }
+  },
+  outputRoot: `dist/${process.env.TARO_ENV}`
 }
+
 
 module.exports = function (merge) {
   if (process.env.NODE_ENV === 'development') {

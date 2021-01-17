@@ -1,34 +1,33 @@
 <template>
-  <view class="index">
+  <view class="login">
     <header-bar />
-    <main-bar />
+    <siginin />
     <ro-footer />
   </view>
 </template>
 
 <script>
-import HeaderBar from '../../components/HeaderBar/HeaderBar'
-import MainBar from '../../components/MainBar/index.vue'
-import RoFooter from '../../components/FooterBar/index.vue'
+import Siginin from '../../components/Signin/Siginin';
+import HeaderBar from '../../components/HeaderBar/HeaderBar';
+import RoFooter from '../../components/FooterBar'
 
 export default {
-  name: 'Index',
   components: {
     HeaderBar,
-    MainBar,
-    RoFooter,
-
+    Siginin,
+    RoFooter
   }
 }
 </script>
 
 <style>
-.index {
+.login {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  /* margin-top: 60px; */
+  /* margin-top: 60p */
+
 }
 </style>

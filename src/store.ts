@@ -4,7 +4,7 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 const state = {
-  numbers: [1, 2, 3]
+  numbers: [1, 2, 3],
 }
 
 const mutations = {
@@ -12,6 +12,7 @@ const mutations = {
     state.numbers.push(payload)
   }
 }
+
 
 const actions = {
   addNumber(context, number) {
